@@ -40,3 +40,105 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+
+
+//// Task 1 and Task 2
+
+// nav //
+let navNL = document.querySelectorAll('nav a');
+navNL.forEach( (el,i) => {
+  el.textContent = siteContent.nav[`nav-item-${i+1}`];
+})
+
+
+// cta //
+// h1
+let parentH1 = document.querySelector('h1');
+let childH1_1 = document.createElement('p');
+let childH1_2 = document.createElement('p');
+let childH1_3 = document.createElement('p');
+
+let h1_str = siteContent.cta.h1;
+h1_words = h1_str.split(' ');
+
+childH1_1.textContent = h1_words[0].toUpperCase();
+childH1_2.textContent = h1_words[1].toUpperCase();
+childH1_3.textContent = h1_words[2].toUpperCase();
+
+parentH1.append(childH1_1);
+parentH1.append(childH1_2);
+parentH1.append(childH1_3);
+
+parentH1.style.display = 'flex';
+parentH1.style.flexDirection = 'column';
+
+// button
+let buttonNL = document.querySelector('.cta-text button');
+buttonNL.textContent = siteContent.cta.button;
+
+// img
+let imgNL = document.querySelector('#cta-img');
+imgNL.src = siteContent.cta["img-src"];
+
+
+// main-content //
+// h4 & p
+let main_contents = document.querySelectorAll('h4, p');
+let main_contents_arr = Array.from(main_contents);
+main_contents_arr = main_contents_arr.slice(3,13);
+
+
+const main_contents_obj = Object.values(siteContent["main-content"])
+main_contents_obj.splice(4, 1);
+main_contents_arr.forEach( (el, i) => {
+  el.textContent = main_contents_obj[i];
+})
+
+// middle-img
+let middleImg = document.querySelector('#middle-img');
+middleImg.src = siteContent["main-content"]["middle-img-src"];
+
+// contact
+let contact_h4 = document.querySelector('.contact h4');
+let contact_p = document.querySelectorAll('.contact p');
+
+contact_h4.textContent = 'CONTACT';
+
+let contact_p_values = Object.values(siteContent.contact);
+contact_p_values.splice(0,1);
+console.log(contact_p_values)
+contact_p.forEach( (el,i) => {
+  el.textContent = contact_p_values[i];
+});
+
+// Separating address into two lines
+let contact_parent = document.querySelector('.contact');
+let additional_p = document.createElement('p');
+let first_p = document.querySelector('.contact p');
+additional_p.textContent = siteContent.contact.address.substring(0,19);
+contact_parent.insertBefore(additional_p, contact_parent.children[1]);
+first_p.textContent = siteContent.contact.address.substring(19);
+
+console.log(additional_p);
+
+// footer
+let footer_p = document.querySelector('footer p');
+footer_p.textContent = siteContent.footer.copyright;
+
+
+
+//// Task 3
+let navParent = document.querySelector('nav');
+let navChild1 = document.createElement('a');
+let navChild2 = document.createElement('a');
+navChild1.textContent = 'Home';
+navChild2.textContent = 'DomDomDom';
+navChild1.href = '#';
+navChild2.href = '#';
+navParent.prepend(navChild1);
+navParent.appendChild(navChild2);
+
+// Change color to green
+let newNavNL = document.querySelectorAll('nav a');
+newNavNL.forEach( el => el.style.color = 'green');
