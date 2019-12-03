@@ -107,20 +107,21 @@ contact_h4.textContent = 'CONTACT';
 
 let contact_p_values = Object.values(siteContent.contact);
 contact_p_values.splice(0,1);
-console.log(contact_p_values)
 contact_p.forEach( (el,i) => {
   el.textContent = contact_p_values[i];
 });
 
-// Separating address into two lines
-let contact_parent = document.querySelector('.contact');
-let additional_p = document.createElement('p');
-let first_p = document.querySelector('.contact p');
-additional_p.textContent = siteContent.contact.address.substring(0,19);
-contact_parent.insertBefore(additional_p, contact_parent.children[1]);
-first_p.textContent = siteContent.contact.address.substring(19);
+//// Separating address into two lines
+// let contact_parent = document.querySelector('.contact');
+// let additional_p = document.createElement('p');
+// let first_p = document.querySelector('.contact p');
+// additional_p.textContent = siteContent.contact.address.substring(0,19);
+// contact_parent.insertBefore(additional_p, contact_parent.children[1]);
+// first_p.textContent = siteContent.contact.address.substring(19);
 
-console.log(additional_p);
+// console.log(additional_p);
+contact_p[0].style.width = '20%';
+
 
 // footer
 let footer_p = document.querySelector('footer p');
@@ -142,3 +143,38 @@ navParent.appendChild(navChild2);
 // Change color to green
 let newNavNL = document.querySelectorAll('nav a');
 newNavNL.forEach( el => el.style.color = 'green');
+
+
+// STRETCH
+let handleBOOM = document.createElement('button');
+handleBOOM.textContent = 'Dark mode';
+let parentBOOM = document.querySelector('.cta-text');
+parentBOOM.append(handleBOOM);
+handleBOOM.style.fontSize = '1rem';
+handleBOOM.style.border = '1px solid black';
+handleBOOM.style.margin = '4px 0';
+handleBOOM.style.padding = '3px 5px';
+handleBOOM.href = '#';
+handleBOOM.style.textDecoration = 'none';
+handleBOOM.style.background = 'white';
+handleBOOM.style.color = 'black';
+
+let entireBody = document.querySelector('body');
+let all_h1 = document.querySelector('h1')
+let all_h4 = document.querySelectorAll('h4');
+let all_p = document.querySelectorAll('p');
+
+let BOOM = function () {
+  entireBody.style.background = '#252934';
+  all_h1.style.color = 'white';
+  all_h4.forEach( el => el.style.color = 'white');
+  all_p.forEach( el => el.style.color = 'white');
+}
+
+let BOOMhover = function() {
+  handleBOOM.style.background = 'red';
+  handleBOOM.style.color = 'white';
+}
+
+handleBOOM.addEventListener('hover', BOOMhover);
+handleBOOM.addEventListener('click', BOOM);

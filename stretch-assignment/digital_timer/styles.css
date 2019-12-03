@@ -4,6 +4,7 @@ body {
   align-items: center;
 }
 
+/* child div */
 .digit {
   display: inline-block;
   font-size: 80px;
